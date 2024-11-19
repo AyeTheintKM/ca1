@@ -1,0 +1,121 @@
+@charset "UTF-8";
+:root {
+	--hue: 200;
+	--saturation: 70%;
+	--lightness: 55%;
+	--main-color: hsl(var(--hue), var(--saturation), var(--lightness));
+	--text-white: hsl(0,0%, 100%);
+	--text-loight-gray: hsl(0, 0%, 96%);
+	--text-x-dark-gray: hsl(0, 0%, 10%);
+	--text-dark-gray: hsl(0, 0%, 20%);
+	--body-bg-color: hsl(var(--hue), 60%, 94%);
+	--bg-color: hsl(var(--hue),60%, 96%);
+	--bg-white: hsl(0, 0%, 100%);
+	--border-color: hsl(var(--hue), 48%, 80%);
+	--shadow: 0 0 10px hsla(var(--hue), 57%, 63%, 0.3);
+	--focus-shadow: 0 0 10px hsla(var(--hue), 57%, 63%, 0.3);
+	--fs-4xl: 50px;
+	--fs-3xl: 35px;
+	--fs-2xl: 26px;
+	--fs-xl: 20px;
+	--fs-lg: 18px;
+	--fs-md: 16px;
+	--fs-sm: 14px;
+}
+
+body {
+	background-color:  var(--body-bg-color);
+	color: var(--text-dark-gray);
+}
+.navbar-brand {
+	font-weight: 500;
+	color: #6dabe4;
+	font-size: 24px;
+	transition: 0.3s color;
+}
+
+.login-button {
+	background-color: #6dabe4;
+	color: #fff;
+	font-size: 14px;
+	padding: 8px 20px;
+	margin: 6px;
+	border-radius: 50px;
+	text-decoration: none;
+	transition: 0.3s background-color;
+}
+
+.login-button:hover {
+	background-color: #88a3ca;
+}
+
+
+.home {
+	padding: 100px 0 60px;
+}
+
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	gap: 30px;
+}
+
+.home-text, .home-img {
+	grid-column: span 6;
+	align-self: center;
+}
+
+.home-text h1 {
+	margin: 0 0 20px;
+	text-transform: capitalize;
+}
+
+.home-text p {
+	margin: 0 0 30px;
+}
+.btn {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #6dabe4;
+	font-weight: 500;
+	color: #fff;
+	text-transform: capitalize;
+	line-height: 1.5em;
+	border:2px solid transparent;
+	border-radius: 30px;
+	vertical-align: middle;
+	user-select: none;
+	transition: all 0.3s ease;
+}
+
+.btn:hover {
+	background-color: transparent;
+	color: #6dabe4;
+	border-color: #6dabe4;
+}
+.home-img {
+	position: relative;
+}
+
+.home-img .circle-wrap {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: -1;
+}
+
+.home-img .circle {
+	height: 350px;
+	width: 350px;
+	background-color: #6dabe4;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	
+}
+
+.home-img img {
+	max-width: 270px;
+	dispaly: block;
+	margin: auto;
+}
