@@ -119,3 +119,11 @@ body {
 	dispaly: block;
 	margin: auto;
 }
+
+.dropdown-menu {
+	background-color: #85b8f4;
+}
+
+.dropdown-menu a {
+	color: #121212;
+}
