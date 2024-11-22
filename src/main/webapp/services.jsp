@@ -11,7 +11,9 @@
     <h2>Available Services</h2>
     <ul>
         <% 
-            Connection conn = dao.DBConnection.getConnection();
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+			String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
+			Connection conn = DriverManager.getConnection(connURL);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM service_category");
             while (rs.next()) { 

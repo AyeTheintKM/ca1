@@ -33,7 +33,7 @@
 						</li>
 						<li class="nav-item"><a class="nav-link mx-lg-2" href="#">Services</a>
 						</li>
-						<li class="nav-item"><a class="nav-link mx-lg-2" href="#">Portfolio</a>
+						<li class="nav-item"><a class="nav-link mx-lg-2" href="#">Feedback</a>
 						</li>
 						<li class="nav-item"><a class="nav-link mx-lg-2" href="#">Contact</a>
 						</li>
@@ -43,11 +43,6 @@
 				</div>
 			</div>
 			<a href="customer/login.jsp" class="login-button">Login</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-				aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
 			<a href="customer/register.jsp" class="login-button">Register</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
