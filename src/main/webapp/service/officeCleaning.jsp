@@ -16,7 +16,7 @@ body {
 </style>
 </head>
 <body>
-	<%@include file="../navbar/navbar.html" %>
+	<%@include file="../navbar/navbar.jsp" %>
 	<div class="d-flex flex-column mt-5 align-items-center">
 		<div class="d-flex flex-row align-items-center my-3">
 			<div class="d-flex flex-column col-5 align-items-center">

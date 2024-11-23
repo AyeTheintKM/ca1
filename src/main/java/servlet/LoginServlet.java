@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
 			ResultSet rs = pst.executeQuery();
 			if(rs.next()) {
 				session.setAttribute("user", rs.getString("name"));
+				session.setAttribute("useremail", rs.getString("email"));
 				response.sendRedirect("customer/profile.jsp");
 				
 			} else {

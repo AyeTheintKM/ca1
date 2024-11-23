@@ -98,7 +98,7 @@
 		crossorigin="anonymous"></script>
 </body>
 </html>
---%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
@@ -166,4 +166,323 @@
 </body>
 </html>
 
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Service</title>
+    <link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<link href="../css/style.css" rel="stylesheet">
+    <style>
+    header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+	.container1 {
+            max-width: 800px;
+            margin: 120px auto 50px; /* Adjust margin to avoid overlapping with navbar */
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .booking-header {
+            background-color: #6dabe4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .booking-header h2 {
+            margin: 0;
+        }
+
+        .form-container {
+            padding: 30px;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-container form label {
+            font-weight: bold;
+        }
+
+        .form-container form input,
+        .form-container form textarea,
+        .form-container form button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-container form input:focus,
+        .form-container form textarea:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        .form-container form button {
+            background-color: #6dabe4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-container form button:hover {
+            background-color: #6dabe4;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+	<header>
+    	<%@include file="../navbar/navbar.jsp" %>
+	</header>
+    <div class="container1">
+        <div class="booking-header">
+            <h2>Book a Service</h2>
+        </div>
+
+        <div class="form-container">
+            <%
+                // Retrieve service_id from the request
+                int serviceId = Integer.parseInt(request.getParameter("service_id"));
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
+                Connection conn = DriverManager.getConnection(connURL);
+
+                String serviceName = "";
+                double price = 0;
+
+                String sql = "SELECT * FROM services WHERE service_id = ?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setInt(1, serviceId);
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    serviceName = rs.getString("name");
+                    price = rs.getDouble("price");
+                }
+
+                rs.close();
+                stmt.close();
+                conn.close();
+            %>
+
+            <form action="../BookingServlet" method="post">
+                <label for="service">Service:</label>
+                <input type="text" id="service" name="service" value="<%= serviceName %>" readonly>
+
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price" value="$<%= price %>" readonly>
+
+                <label for="booking_date">Booking Date:</label>
+                <input type="date" id="booking_date" name="booking_date" required>
+
+                <label for="booking_time">Booking Time:</label>
+                <input type="time" id="booking_time" name="booking_time" required>
+
+                <label for="instructions">Special Instructions:</label>
+                <textarea id="instructions" name="instructions" rows="4" placeholder="Enter any special instructions"></textarea>
+
+                <input type="hidden" name="service_id" value="<%= serviceId %>">
+
+                <button type="submit">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Cleaning Services. All rights reserved.
+    </footer>
+    <script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+	crossorigin="anonymous"></script>
+</body>
+</html>
+
+--%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Service</title>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="../css/style.css" rel="stylesheet">
+    <style>
+        /* Your styles remain unchanged */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+	.container1 {
+            max-width: 800px;
+            margin: 120px auto 50px; /* Adjust margin to avoid overlapping with navbar */
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .booking-header {
+            background-color: #6dabe4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .booking-header h2 {
+            margin: 0;
+        }
+
+        .form-container {
+            padding: 30px;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-container form label {
+            font-weight: bold;
+        }
+
+        .form-container form input,
+        .form-container form textarea,
+        .form-container form button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-container form input:focus,
+        .form-container form textarea:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        .form-container form button {
+            background-color: #6dabe4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-container form button:hover {
+            background-color: #6dabe4;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <%@ include file="../navbar/navbar.jsp" %>
+    </header>
+
+    <%
+    String userEmail = (String) session.getAttribute("useremail");
+    
+    if (session == null || session.getAttribute("useremail") == null) {
+        // No session or user not logged in, redirect to login page
+        response.sendRedirect("../customer/login.jsp");
+        return;
+    }
+%>
+
+    <div class="container1">
+        <div class="booking-header">
+            <h2>Book a Service</h2>
+        </div>
+
+        <div class="form-container">
+            <%
+                // Retrieve service_id from the request
+                int serviceId = Integer.parseInt(request.getParameter("service_id"));
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
+                Connection conn = DriverManager.getConnection(connURL);
+
+                String serviceName = "";
+                double price = 0;
+
+                String sql = "SELECT * FROM services WHERE service_id = ?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setInt(1, serviceId);
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    serviceName = rs.getString("name");
+                    price = rs.getDouble("price");
+                }
+
+                rs.close();
+                stmt.close();
+                conn.close();
+            %>
+
+            <form action="../BookingServlet" method="post">
+                <label for="service">Service:</label>
+                <input type="text" id="service" name="service" value="<%= serviceName %>" readonly>
+
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price" value="$<%= price %>" readonly>
+
+                <label for="booking_date">Booking Date:</label>
+                <input type="date" id="booking_date" name="booking_date" required>
+
+                <label for="booking_time">Booking Time:</label>
+                <input type="time" id="booking_time" name="booking_time" required>
+
+                <label for="instructions">Special Instructions:</label>
+                <textarea id="instructions" name="instructions" rows="4" placeholder="Enter any special instructions"></textarea>
+
+                <input type="hidden" name="service_id" value="<%= serviceId %>">
+
+                <button type="submit">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>
 

@@ -12,7 +12,7 @@
 <link href="./css/service-style.css" rel="stylesheet">
 </head>
 <body>
-	<%@include file="../navbar/navbar.html" %>
+	<%@include file="../navbar/navbar.jsp" %>
 	<div class="d-flex flex-column mt-5 align-items-center">
 		<div class="d-flex flex-row align-items-center">
 			<div class="d-flex flex-column col-5 align-items-center">

@@ -26,12 +26,23 @@
 body {
 	background-color:  var(--body-bg-color);
 	color: var(--text-dark-gray);
+	margin: 0;
+	padding: 0;
 }
 .navbar-brand {
 	font-weight: 500;
 	color: #6dabe4;
 	font-size: 24px;
 	transition: 0.3s color;
+}
+
+.nav-link {
+	color: 121212;
+	tranition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #6dabe4;
 }
 
 .login-button {
@@ -47,8 +58,21 @@ body {
 
 .login-button:hover {
 	background-color: #88a3ca;
+	text-decoration: none;
 }
 
+/* Navbar Styling */
+.transparent-navbar {
+    background: transparent;
+    transition: background-color 0.3s ease;
+    box-shadow: none;
+    z-index: 1000;
+}
+
+.transparent-navbar.scrolled {
+    background-color: hsl(200, 60%, 96%);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
 .home {
 	padding: 100px 0 60px;
