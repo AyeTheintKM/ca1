@@ -105,22 +105,6 @@
 		</div>
 
 	</div>
-	<ul>
-        <% 
-	        Class.forName("com.mysql.cj.jdbc.Driver");
-			String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
-			Connection conn = DriverManager.getConnection(connURL);
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM service_category");
-            while (rs.next()) { 
-        %>
-        <li>
-            <h3><%= rs.getString("name") %></h3>
-            <p><%= rs.getString("description") %></p>
-            <a href="serviceDetails.jsp?category_id=<%= rs.getInt("category_id") %>">View Services</a>
-        </li>
-        <% } %>
-    </ul>
 	<script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
