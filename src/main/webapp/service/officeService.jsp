@@ -41,6 +41,7 @@
 
 			                int count = 1;
 			                while (rs.next()) {
+			                	int serviceId = rs.getInt("service_id");
 			        %>
 			        	<div class="accordion-item col-12 p-0">
 						    <h2 class="accordion-header" style="background-color:#c6e4ff;">

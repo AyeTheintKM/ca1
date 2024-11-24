@@ -1,3 +1,4 @@
+<%@ page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.Connection, java.sql.PreparedStatement, java.sql.ResultSet" %>
@@ -14,7 +15,7 @@
 <link href="./css/service-style.css" rel="stylesheet">
 </head>
 <body>
-	<%@include file="../navbar/navbar.html" %>
+	<%@include file="../navbar/navbar.jsp" %>
 	<div class="d-flex flex-column mt-5 align-items-center">
 		<div class="d-flex flex-row align-items-center justify-content-around mt-5 pt-5">
 			<img class="col-7 rounded-4" style="width: 30rem; height: auto;" alt="Aircon Service" src="../images/aircon-service.jpg">
@@ -104,6 +105,22 @@
 		</div>
 
 	</div>
+	<ul>
+        <% 
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+			String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
+			Connection conn = DriverManager.getConnection(connURL);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM service_category");
+            while (rs.next()) { 
+        %>
+        <li>
+            <h3><%= rs.getString("name") %></h3>
+            <p><%= rs.getString("description") %></p>
+            <a href="serviceDetails.jsp?category_id=<%= rs.getInt("category_id") %>">View Services</a>
+        </li>
+        <% } %>
+    </ul>
 	<script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

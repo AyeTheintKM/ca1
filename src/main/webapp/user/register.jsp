@@ -50,6 +50,28 @@
 									placeholder="Contact no" />
 							</div>
 							<div class="form-group">
+								<label for="postal_code"><i class="zmdi zmdi-home"></i></label>
+								<input type="text" name="postal_code" id="postal_code"
+									placeholder="Postal Code" />
+							</div>
+							<div class="form-group">
+								<label for="unit"><i class="zmdi zmdi-home"></i></label> <input
+									type="text" name="unit" id="unit" placeholder="Unit" />
+							</div>
+							<div class="form-group">
+								<label for="floor"><i class="zmdi zmdi-home"></i></label> <input
+									type="text" name="floor" id="floor" placeholder="Floor" />
+							</div>
+							<div class="form-group">
+								<label for="block"><i class="zmdi zmdi-home"></i></label> <input
+									type="text" name="block" id="block" placeholder="Block" />
+							</div>
+							<div class="form-group">
+								<label for="street"><i class="zmdi zmdi-home"></i></label> <input
+									type="text" name="street" id="street" placeholder="Street" />
+							</div>
+
+							<div class="form-group">
 								<input type="checkbox" name="agree-term" id="agree-term"
 									class="agree-term" /> <label for="agree-term"
 									class="label-agree-term"><span><span></span></span>I
