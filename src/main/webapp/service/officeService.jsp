@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Aircon Service</title>
+<title>Office Cleaning Service</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -17,9 +17,9 @@
 	<%@include file="../navbar/navbar.html" %>
 	<div class="d-flex flex-column mt-5 align-items-center">
 		<div class="d-flex flex-row align-items-center justify-content-around mt-5 pt-5">
-			<img class="col-7 rounded-4" style="width: 30rem; height: auto;" alt="Aircon Service" src="../images/aircon-service.jpg">
+			<img class="col-7 rounded-4" style="width: 30rem; height: auto;" alt="Office Cleaning" src="../images/office-cleaning-home-page.jpg">
 			<div class="d-flex flex-column col-5 align-items-center">
-				<p class="fs-5 my-5">Breathe cleaner, cooler air with our professional aircon services. From routine maintenance and chemical cleaning to repairs, we ensure your air conditioning system runs efficiently and lasts longer. Say goodbye to dust, allergens, and energy waste with our thorough care. Experience a fresher, healthier home or office today!</p>
+				<p class="fs-5 my-5">Ensure your workspace is clean, organized, and productive with our tailored office cleaning services. Our team is equipped to handle every aspect of your office environment, making it a fresh and welcoming space for your employees and clients.</p>
 				<a role="button" class="btn login-button" href="#detail-services">Available Services</a>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 			<h3 class="mt-5">Available Services</h3>
 			<div class="d-flex flex-column w-100 justify-content-center">
 				<div class="d-flex flex-column flex-wrap w-100 my-3 align-items-center">
-					<div class="accordion mx-5 row w-75 my-0 justify-content-center" id="airconServiceAccordion">
+					<div class="accordion mx-5 row w-75 my-0" id="officeServiceAccordion">
 					<%
 						Connection conn = null;
 						PreparedStatement ps = null;
@@ -42,23 +42,23 @@
 			                int count = 1;
 			                while (rs.next()) {
 			        %>
-			        	<div class="accordion-item col-10 p-0">
-							<h2 class="accordion-header" style="background-color:#c6e4ff;">
-							  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<%=count %>" aria-expanded="true" aria-controls="collapse-<%=count %>" style="background-color: #c6e4ff;">
-							    <p class="fs-5 mb-0"><%=rs.getString("name") %></p>
-							  </button>
-							</h2>
-							<div id="collapse-<%=count %>" class="accordion-collapse collapse p-4" data-bs-parent="airconServiceAccordion">
-							  <div class="accordion-body d-flex flex-row align-items-center justify-content-around">
-							  	<img class="col-5 rounded-4" style="width: 23rem; height: auto;" alt="<%=rs.getString("name") %>" src="../images/<%=rs.getString("image_path") %>">
-							  	<div class="col-5">
-							     <p><%=rs.getString("description") %></p>
-							     <p>Price: $<%=rs.getDouble("price") %>/unit (+ $20 per additional unit)</p>
-							     <a role="button" class="btn btn-secondary m-auto w-25" href="booking.jsp?serviceId=<%=rs.getInt("service_id")%>">Book</a>
-							      </div>
-							    </div>
-							  </div>
-							</div>
+			        	<div class="accordion-item col-12 p-0">
+						    <h2 class="accordion-header" style="background-color:#c6e4ff;">
+						      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<%=count %>" aria-expanded="true" aria-controls="collapse-<%=count %>" style="background-color: #c6e4ff;">
+						        <p class="fs-5 mb-0"><%=rs.getString("name") %></p>
+						      </button>
+						    </h2>
+						    <div id="collapse-<%=count %>" class="accordion-collapse collapse p-4" data-bs-parent="#officeServiceAccordion">
+						      <div class="accordion-body d-flex flex-row align-items-center justify-content-around">
+						      	<img class="col-6 rounded-4" style="width: 20rem; height: auto;" alt="<%=rs.getString("name") %>" src="../images/<%=rs.getString("image_path") %>">
+						      	<div class="col-6">
+							        <p><%=rs.getString("description") %></p>
+							        <p>Starting price: $<%=rs.getDouble("price") %>/hour</p>
+							        <a role="button" class="btn btn-secondary m-auto w-25" href="booking.jsp?serviceId=<%=rs.getInt("service_id")%>">Book</a>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
 			        <%
 			        			count++;
 			                }
@@ -72,15 +72,22 @@
 							<div class="col-6">
 								<p class="fs-3">Why Choose Us?</p>
 								<ul>
-								    <li><strong>Experienced Technicians:</strong> Our skilled team ensures precise servicing and efficient repairs.</li>
-								    <li><strong>Comprehensive Care:</strong> From general maintenance to chemical cleaning, we handle all aspects of aircon upkeep.</li>
-								    <li><strong>Eco-Friendly Solutions:</strong> We use safe, environmentally-friendly cleaning products for your health and sustainability.</li>
-								    <li><strong>Affordable Pricing:</strong> Transparent rates with no hidden costs, offering excellent value for quality service.</li>
-								    <li><strong>Fast & Reliable:</strong> Quick response and timely service to keep your aircon running smoothly without delays.</li>
+								    <li>
+								      <strong>Professional Team:</strong> Trained cleaners equipped with the latest tools and techniques.
+								    </li>
+								    <li>
+								      <strong>Eco-Friendly Products:</strong> Safe for people and the environment.
+								    </li>
+								    <li>
+								      <strong>Flexible Scheduling:</strong> Evening, weekend, or after-hours cleaning to minimize disruption.
+								    </li>
+								    <li>
+									  <strong>Attention to Detail:</strong> We focus on every corner of your office, ensuring no spot is overlooked for a thorough clean.
+									</li>
 								</ul>
 							</div>
 							<div class="col-6">
-								<img class="rounded-4" style="width: 26rem; height: auto;" alt="Professional Cleaning Team" src="../images/why-choose-us-aircon.jpg">
+								<img class="rounded-4" style="width: 26rem; height: auto;" alt="Professional Cleaning Team" src="../images/why-choose-us-office.jpg">
 							</div>
 						</div>
 					</div>
@@ -88,7 +95,7 @@
 						<div class="row">
 							<div class="col-6">
 								<h2>Get Started Today!</h2>
-								<p>Ready to create a cleaner, healthier air-conditioning? Contact us for a free consultation or book your first cleaning session online.</p>
+								<p>Ready to create a cleaner, healthier workspace? Contact us for a free consultation or book your first cleaning session online.</p>
 								<p>Let us take care of the mess while you focus on growing your business!</p>
 							</div>
 						
