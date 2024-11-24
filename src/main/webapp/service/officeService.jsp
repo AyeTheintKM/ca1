@@ -14,7 +14,7 @@
 <link href="./css/service-style.css" rel="stylesheet">
 </head>
 <body>
-	<%@include file="../navbar/navbar.html" %>
+	<%@include file="../navbar/navbar.jsp" %>
 	<div class="d-flex flex-column mt-5 align-items-center">
 		<div class="d-flex flex-row align-items-center justify-content-around mt-5 pt-5">
 			<img class="col-7 rounded-4" style="width: 30rem; height: auto;" alt="Office Cleaning" src="../images/office-cleaning-home-page.jpg">
