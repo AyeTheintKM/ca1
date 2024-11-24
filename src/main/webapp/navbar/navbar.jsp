@@ -63,14 +63,11 @@ int cartItemCount = (cart1 != null) ? cart1.size() : 0;
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                        <li class="nav-item"><a class="nav-link mx-lg-2 active" aria-current="page" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link mx-lg-2 active" aria-current="page" href="../home/index.jsp">Home</a></li>
                         <li class="nav-item"><a class="nav-link mx-lg-2" href="#">About</a></li>
-                        <li class="nav-item">
-				          <a class="nav-link mx-lg-2" href="../service/services.jsp">
-				            Services
-				          </a>
-				        </li>
-                        <li class="nav-item"><a class="nav-link mx-lg-2" href="../submitFeedback.jsp">Feedback</a></li>
+
+                        <li class="nav-item"><a class="nav-link mx-lg-2" href="../service/services.jsp">Services</a></li>
+          <li class="nav-item"><a class="nav-link mx-lg-2" href="../submitFeedback.jsp">Feedback</a></li>
                         <li class="nav-item"><a class="nav-link mx-lg-2" href="#">Contact</a></li>
                     </ul>
 
