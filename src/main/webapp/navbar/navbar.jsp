@@ -1,13 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.*" %>
 <%
     // Check if user is logged in
     String loggedInUser = (String) session.getAttribute("user");
-%>
+// Fetch the cart from session
+List<Map<String, Object>> cart1 = (List<Map<String, Object>>) session.getAttribute("cart");
+int cartItemCount = (cart1 != null) ? cart1.size() : 0;
+ %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Dynamic Navbar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="../css/style.css" rel="stylesheet">
@@ -57,7 +63,7 @@
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                        <li class="nav-item"><a class="nav-link mx-lg-2 active" aria-current="page" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link mx-lg-2 active" aria-current="page" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link mx-lg-2" href="#">About</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -82,7 +88,14 @@
                             <a href="../customer/register.jsp" class="btn btn-secondary">Register</a>
                         <% } else { %>
                             <!-- If logged in -->
-                            <span class="navbar-text me-2">Welcome, <strong><%= loggedInUser %></strong></span>
+                            
+                    	<a class="nav-link position-relative" href="cart.jsp">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            <%= cartItemCount %>
+                        </span>
+                    </a>
+						<a href="../customer/profile.jsp" class="btn btn-danger mx-2"><%=session.getAttribute("user") %></a>
                             <a href="../logout" class="btn btn-danger">Logout</a>
                         <% } %>
                     </div>
