@@ -27,10 +27,11 @@ public class BookingServlet extends HttpServlet {
         int userId = (int) session.getAttribute("userId"); // Retrieve logged-in user ID from session
 
         try {
-            // Database connection
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
-            Connection conn = DriverManager.getConnection(connURL);
+        	String USERNAME = "neondb_owner";
+			 String PASSWORD = "PCbckaliN31T";
+			Class.forName("org.postgresql.Driver");
+           String connURL = "jdbc:postgresql://ep-muddy-shape-a1pi44zq.ap-southeast-1.aws.neon.tech/cleaning-service?sslmode=require";
+           Connection conn = DriverManager.getConnection(connURL, USERNAME, PASSWORD);
 
             // Check if the service is already booked by this customer
             String checkSql = "SELECT * FROM bookings WHERE user_id = ? AND service_id = ?";
@@ -41,7 +42,7 @@ public class BookingServlet extends HttpServlet {
 
             if (rs.next()) {
                 // Service already booked, redirect with an error message
-                response.sendRedirect("customer/bookService.jsp?service_id=" + serviceId + "&error=already_booked");
+                response.sendRedirect("user/bookService.jsp?service_id=" + serviceId + "&error=already_booked");
             } else {
                 // Insert booking record
                 String insertSql = "INSERT INTO bookings (user_id, service_id, booking_date, booking_time, instructions) VALUES (?, ?, ?, ?, ?)";
@@ -71,9 +72,9 @@ public class BookingServlet extends HttpServlet {
                     cart.add(booking);
                     session.setAttribute("cart", cart);
 
-                    response.sendRedirect("customer/cart.jsp?success=booking_added");
+                    response.sendRedirect("user/cart.jsp?success=booking_added");
                 } else {
-                    response.sendRedirect("customer/bookService.jsp?service_id=" + serviceId + "&error=booking_failed");
+                    response.sendRedirect("user/bookService.jsp?service_id=" + serviceId + "&error=booking_failed");
                 }
                 insertStmt.close();
             }
@@ -85,7 +86,7 @@ public class BookingServlet extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("customer/bookService.jsp?service_id=" + serviceId + "&error=internal_error");
+            response.sendRedirect("user/bookService.jsp?service_id=" + serviceId + "&error=internal_error");
         }
     }
 }

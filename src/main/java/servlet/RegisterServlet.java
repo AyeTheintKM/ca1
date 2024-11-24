@@ -37,10 +37,12 @@ public class RegisterServlet extends HttpServlet {
 		//out.print(umobile);
 		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
-			conn = DriverManager.getConnection(connURL);
-			PreparedStatement pst = conn.prepareStatement("INSERT INTO user (name, email, password, phone, postal_code, unit, floor, block, street) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			String USERNAME = "neondb_owner";
+			 String PASSWORD = "PCbckaliN31T";
+			Class.forName("org.postgresql.Driver");
+           String connURL = "jdbc:postgresql://ep-muddy-shape-a1pi44zq.ap-southeast-1.aws.neon.tech/cleaning-service?sslmode=require";
+           conn = DriverManager.getConnection(connURL, USERNAME, PASSWORD);
+			PreparedStatement pst = conn.prepareStatement("INSERT INTO users (name, email, password, phone, postal_code, unit, floor, block, street) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			pst.setString(1, name);
             pst.setString(2, email);
             pst.setString(3, password);
@@ -55,17 +57,17 @@ public class RegisterServlet extends HttpServlet {
 
             if (rowCount > 0) {
                 // Redirect to login page on success
-                response.sendRedirect("customer/login.jsp");
+                response.sendRedirect("user/login.jsp");
             } else {
                 // Redirect to register page with failure message
-                response.sendRedirect("register.jsp?error=failure");
+                response.sendRedirect("user/register.jsp?error=failure");
             }
 
             pst.close();
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("register.jsp?error=exception");
+            response.sendRedirect("user/register.jsp?error=exception");
         }
     }
 }

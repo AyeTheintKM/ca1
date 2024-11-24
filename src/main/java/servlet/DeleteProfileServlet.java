@@ -29,12 +29,14 @@ public class DeleteProfileServlet extends HttpServlet {
 
         try {
             // Database connection
-        	Class.forName("com.mysql.cj.jdbc.Driver");
-			String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
-			Connection conn = DriverManager.getConnection(connURL);
+        	String USERNAME = "neondb_owner";
+			 String PASSWORD = "PCbckaliN31T";
+			Class.forName("org.postgresql.Driver");
+           String connURL = "jdbc:postgresql://ep-muddy-shape-a1pi44zq.ap-southeast-1.aws.neon.tech/cleaning-service?sslmode=require";
+           Connection conn = DriverManager.getConnection(connURL, USERNAME, PASSWORD);
 
             // SQL to delete the profile
-            String sql = "DELETE FROM user WHERE user_id = ?";
+            String sql = "DELETE FROM users WHERE user_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, userId);
 
@@ -45,10 +47,10 @@ public class DeleteProfileServlet extends HttpServlet {
             // Invalidate the session
             session.invalidate();
 
-            response.sendRedirect("customer/login.jsp?delete=success");
+            response.sendRedirect("user/login.jsp?delete=success");
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("customer/profile.jsp?delete=fail");
+            response.sendRedirect("user/profile.jsp?delete=fail");
         }
     }
 }

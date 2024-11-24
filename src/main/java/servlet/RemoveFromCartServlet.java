@@ -33,10 +33,11 @@ public class RemoveFromCartServlet extends HttpServlet {
             // Remove the booking from the database
             try {
                 // Database connection
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
-                Connection conn = DriverManager.getConnection(connURL);
-
+            	String USERNAME = "neondb_owner";
+				 String PASSWORD = "PCbckaliN31T";
+				Class.forName("org.postgresql.Driver");
+	            String connURL = "jdbc:postgresql://ep-muddy-shape-a1pi44zq.ap-southeast-1.aws.neon.tech/cleaning-service?sslmode=require";
+	            Connection conn = DriverManager.getConnection(connURL, USERNAME, PASSWORD);
                 // Delete the booking from the database
                 String sql = "DELETE FROM bookings WHERE user_id = ? AND service_id = (SELECT service_id FROM services WHERE name = ?)";
                 PreparedStatement stmt = conn.prepareStatement(sql);
@@ -48,7 +49,7 @@ public class RemoveFromCartServlet extends HttpServlet {
                 conn.close();
             } catch (Exception e) {
                 e.printStackTrace();
-                response.sendRedirect("customer/cart.jsp?error=database_error");
+                response.sendRedirect("user/cart.jsp?error=database_error");
                 return;
             }
 
@@ -58,7 +59,7 @@ public class RemoveFromCartServlet extends HttpServlet {
         }
 
         // Redirect back to the cart page
-        response.sendRedirect("customer/cart.jsp");
+        response.sendRedirect("user/cart.jsp");
     }
 }
 

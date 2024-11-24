@@ -84,8 +84,8 @@ int cartItemCount = (cart1 != null) ? cart1.size() : 0;
                     <div class="d-flex">
                         <% if (loggedInUser == null) { %>
                             <!-- If not logged in -->
-                            <a href="../customer/login.jsp" class="btn btn-primary mx-2">Login</a>
-                            <a href="../customer/register.jsp" class="btn btn-secondary">Register</a>
+                            <a href="../user/login.jsp" class="btn btn-primary mx-2">Login</a>
+                            <a href="../user/register.jsp" class="btn btn-secondary">Register</a>
                         <% } else { %>
                             <!-- If logged in -->
                             
@@ -95,7 +95,7 @@ int cartItemCount = (cart1 != null) ? cart1.size() : 0;
                             <%= cartItemCount %>
                         </span>
                     </a>
-						<a href="../customer/profile.jsp" class="btn btn-danger mx-2"><%=session.getAttribute("user") %></a>
+						<a href="../user/profile.jsp" class="btn btn-danger mx-2"><%=session.getAttribute("user") %></a>
                             <a href="../logout" class="btn btn-danger">Logout</a>
                         <% } %>
                     </div>

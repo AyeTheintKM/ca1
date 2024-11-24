@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="dao.DBConnection" %>
 
 <%
 // Check if the session is valid
@@ -12,12 +13,15 @@ if (session == null || session.getAttribute("userId") == null) {
 int userId = (int) session.getAttribute("userId");
 
 // Database connection
-String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
-Class.forName("com.mysql.cj.jdbc.Driver");
-Connection conn = DriverManager.getConnection(connURL);
+
+String USERNAME = "neondb_owner";
+String PASSWORD = "PCbckaliN31T";
+					Class.forName("org.postgresql.Driver");
+		            String connURL = "jdbc:postgresql://ep-muddy-shape-a1pi44zq.ap-southeast-1.aws.neon.tech/cleaning-service?sslmode=require";
+		            Connection conn = DriverManager.getConnection(connURL, USERNAME, PASSWORD);
 
 // Fetch user details
-String sql = "SELECT * FROM user WHERE user_id = ?";
+String sql = "SELECT * FROM users WHERE user_id = ?";
 PreparedStatement stmt = conn.prepareStatement(sql);
 stmt.setInt(1, userId);
 ResultSet rs = stmt.executeQuery();
@@ -256,7 +260,7 @@ body {
 				<div class="action-buttons">
 					<button type="submit" class="btn btn-primary">Update
 						Profile</button>
-					<a href="deleteProfile.jsp" class="btn btn-danger">Delete
+					<a href="../DeleteProfileServlet.jsp" class="btn btn-danger">Delete
 						Account</a>
 				</div>
 			</form>

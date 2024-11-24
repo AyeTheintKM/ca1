@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="dao.DBConnection" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,7 +93,7 @@ header {
 
 	if (session == null || session.getAttribute("useremail") == null) {
 		// No session or user not logged in, redirect to login page
-		response.sendRedirect("../customer/login.jsp");
+		response.sendRedirect("../user/login.jsp");
 		return;
 	}
 	%>
@@ -123,9 +124,11 @@ header {
 		<div class="form-container">
 			<%
 			int serviceId = Integer.parseInt(request.getParameter("service_id"));
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
-			Connection conn = DriverManager.getConnection(connURL);
+					String USERNAME = "neondb_owner";
+					 String PASSWORD = "PCbckaliN31T";
+					Class.forName("org.postgresql.Driver");
+		            String connURL = "jdbc:postgresql://ep-muddy-shape-a1pi44zq.ap-southeast-1.aws.neon.tech/cleaning-service?sslmode=require";
+		            Connection conn = DriverManager.getConnection(connURL, USERNAME, PASSWORD);
 
 			String serviceName = "";
 			double price = 0.0;

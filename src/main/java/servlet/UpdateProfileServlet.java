@@ -35,11 +35,13 @@ public class UpdateProfileServlet extends HttpServlet {
 
         try {
             // Database connection
-        	Class.forName("com.mysql.cj.jdbc.Driver");
-			String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
-			Connection conn = DriverManager.getConnection(connURL);
+        	String USERNAME = "neondb_owner";
+			 String PASSWORD = "PCbckaliN31T";
+			Class.forName("org.postgresql.Driver");
+           String connURL = "jdbc:postgresql://ep-muddy-shape-a1pi44zq.ap-southeast-1.aws.neon.tech/cleaning-service?sslmode=require";
+           Connection conn = DriverManager.getConnection(connURL, USERNAME, PASSWORD);
 
-            String sql = "UPDATE user SET name = ?, phone = ?, postal_code = ?, floor = ?, unit = ?, street = ?, block = ? WHERE user_id = ?";
+            String sql = "UPDATE users SET name = ?, phone = ?, postal_code = ?, floor = ?, unit = ?, street = ?, block = ? WHERE user_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, name);
             stmt.setString(2, phone);
@@ -55,10 +57,10 @@ public class UpdateProfileServlet extends HttpServlet {
             stmt.close();
             conn.close();
 
-            response.sendRedirect("customer/profile.jsp?update=success");
+            response.sendRedirect("user/profile.jsp?update=success");
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("customer/profile.jsp?update=fail");
+            response.sendRedirect("user/profile.jsp?update=fail");
         }
     }
 }

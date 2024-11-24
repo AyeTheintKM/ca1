@@ -18,7 +18,7 @@ import jakarta.servlet.annotation.WebServlet;
 public class AdminLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Retrieve username and password from the request
-        String username = request.getParameter("username");
+        String username = request.getParameter("email");
         String password = request.getParameter("password");
 
         // Validate against database
@@ -27,7 +27,7 @@ public class AdminLoginServlet extends HttpServlet {
 			String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
 			Connection conn = DriverManager.getConnection(connURL);
             // Prepare SQL query to check admin credentials
-            String sql = "SELECT * FROM admin_users WHERE username = ? AND password = ?";
+            String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
             stmt.setString(2, password); // Consider hashing password for real-world applications
@@ -39,6 +39,7 @@ public class AdminLoginServlet extends HttpServlet {
                 // If valid, create a session and store the admin username
                 HttpSession session = request.getSession();
                 session.setAttribute("admin", username);
+                session.setAttribute("role_id", rs.getInt("role_id"));
 
                 // Redirect to the admin dashboard
                 response.sendRedirect("admin/dashboard.jsp");

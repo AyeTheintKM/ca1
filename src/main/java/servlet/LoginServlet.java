@@ -23,10 +23,12 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		RequestDispatcher dispatcher = null;
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			String connURL = "jdbc:mysql://localhost/cleaning-services?user=root&password=root&serverTimezone=UTC";
-			Connection conn = DriverManager.getConnection(connURL);
-			PreparedStatement pst = conn.prepareStatement("SELECT * FROM user WHERE email = ? AND password = ?");
+			String USERNAME = "neondb_owner";
+			 String PASSWORD = "PCbckaliN31T";
+			Class.forName("org.postgresql.Driver");
+           String connURL = "jdbc:postgresql://ep-muddy-shape-a1pi44zq.ap-southeast-1.aws.neon.tech/cleaning-service?sslmode=require";
+           Connection conn = DriverManager.getConnection(connURL, USERNAME, PASSWORD);
+			PreparedStatement pst = conn.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?");
 			pst.setString(1,  email);
 			pst.setString(2,  password);
 			
@@ -35,10 +37,10 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("userId", rs.getInt("user_id"));
 				session.setAttribute("user", rs.getString("name"));
 				session.setAttribute("useremail", rs.getString("email"));
-				response.sendRedirect("customer/profile.jsp");
+				response.sendRedirect("user/profile.jsp");
 				
 			} else {
-				response.sendRedirect("customer/login.jsp?error=invalid");
+				response.sendRedirect("user/login.jsp?error=invalid");
 			}
         } catch (Exception e) {
             e.printStackTrace();
