@@ -72,7 +72,7 @@ if (cart == null || cart.isEmpty()) {
 		if (cart.isEmpty()) {
 		%>
 		<p class="text-center">
-			Your cart is empty. <a href="services.jsp">Book a service</a>.
+			Your cart is empty. <a href="../service/services.jsp">Book a service</a>.
 		</p>
 		<%
 		} else {
