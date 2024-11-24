@@ -14,7 +14,7 @@
 <link href="./css/service-style.css" rel="stylesheet">
 </head>
 <body>
-	<%@include file="../navbar/navbar.html" %>
+	<%@include file="../navbar/navbar.jsp" %>
 	<div class="d-flex flex-column mt-5 align-items-center">
 		<div class="d-flex flex-row align-items-center justify-content-around mt-5 pt-5">
 			<img class="col-7 rounded-4" style="width: 30rem; height: auto;" alt="Deep Cleaning" src="../images/office-cleaning-home-page.jpg">
@@ -102,7 +102,7 @@
 							<div class="col-6 d-flex flex-column align-items-center justify-content-center text-decoration-none">
 							  <p><strong>Call Us:</strong> <a href="tel:+6512345678">+65 1234 5678</a></p>
 							  <p><strong>Email:</strong> <a href="mailto:info@cleanpro.sg">info@cleanpro.sg</a></p>
-							  <p><strong>Book Online:</strong> <a href="#detail-services">Click Here</a></p>
+							  <p><strong>Book Online:</strong> <a href="../customer/bookService.jsp?service_id=<%= rs.getInt("service_id") %>">Click Here</a></p>
 							</div>
 						</div>
 					</div>

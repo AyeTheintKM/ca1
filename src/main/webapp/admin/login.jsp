@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%-- <%@ include file="../includes/header.jsp" %> --%>
 
 <!DOCTYPE html>
@@ -7,7 +9,7 @@
 </head>
 <body>
     <h2>Admin Panel</h2>
-    <form method="post" action="../AdminLoginServlet">
+    <form method="post" action="../LoginServlet">
         <label>Username:</label>
         <input type="text" name="username" required><br>
         <label>Password:</label>
