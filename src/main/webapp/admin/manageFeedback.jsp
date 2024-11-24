@@ -8,12 +8,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Dashboard</title>
+    <title>Manage Feedback</title>
 </head>
 <body>
 	<%@include file="../navbar/adminNavbar.jsp" %>
     <div class="mt-5" id="">
-        <h2>Admin Dashboard</h2>
+        <h2>Manage Feedback</h2>
     </div>
 </body>
 </html>
