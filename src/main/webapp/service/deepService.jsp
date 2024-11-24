@@ -102,7 +102,7 @@
 							<div class="col-6 d-flex flex-column align-items-center justify-content-center text-decoration-none">
 							  <p><strong>Call Us:</strong> <a href="tel:+6512345678">+65 1234 5678</a></p>
 							  <p><strong>Email:</strong> <a href="mailto:info@cleanpro.sg">info@cleanpro.sg</a></p>
-							  <p><strong>Book Online:</strong> <a href="../customer/bookService.jsp?service_id=<%= rs.getInt("service_id") %>">Click Here</a></p>
+							  <p><strong>Book Online:</strong> <a href="#detail-services">Click Here</a></p>
 							</div>
 						</div>
 					</div>
