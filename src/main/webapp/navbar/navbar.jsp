@@ -80,7 +80,7 @@ int cartItemCount = (cart1 != null) ? cart1.size() : 0;
                         <% } else { %>
                             <!-- If logged in -->
                             
-                    	<a class="nav-link position-relative" href="cart.jsp">
+                    	<a class="nav-link position-relative" href="../user/cart.jsp">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             <%= cartItemCount %>
