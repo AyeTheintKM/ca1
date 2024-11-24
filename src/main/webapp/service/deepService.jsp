@@ -54,7 +54,7 @@
 							  	<div class="col-5">
 							     <p><%=rs.getString("description") %></p>
 							     <p>Price: $<%=rs.getDouble("price") %></p>
-							     <a role="button" class="btn btn-secondary m-auto w-25" href="booking.jsp?serviceId=<%=rs.getInt("service_id")%>">Book</a>
+							     <a role="button" class="btn btn-secondary m-auto w-25" href=""../user/bookService.jsp?serviceId=<%=rs.getInt("service_id")%>"">Book</a>
 							      </div>
 							    </div>
 							  </div>
