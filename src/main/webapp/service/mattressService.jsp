@@ -45,7 +45,7 @@
 			        		<p class="text-center card-header fs-5 text-secondary my-2"><%=rs.getString("name") %></p>
 						  	<div class="card-body text-secondary d-flex flex-column align-items-center justify-content-center">
 						  		<p>Price: $<%=rs.getDouble("price") %></p>
-						  		<a role="button" class="btn btn-secondary m-auto" href="booking.jsp?serviceId=<%=rs.getInt("service_id")%>">Book</a>
+						  		<a role="button" class="btn btn-secondary m-auto" href=""../user/bookService.jsp?serviceId=<%=rs.getInt("service_id")%>"">Book</a>
 						  	</div>
 						</div>
 			        <%
