@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.*" %>
 <%
-    String role_id = (String) session.getAttribute("role_id");
-	if (session == null || !role_id.equals("1")) {
+	String strRole = (String)session.getAttribute("role");
+	if (session == null || strRole == null || !strRole.equals("Admin")) {
 		response.sendRedirect("../user/login.jsp?errCode=invalid");
 	}
 %>
