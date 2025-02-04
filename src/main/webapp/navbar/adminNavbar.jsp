@@ -33,7 +33,8 @@
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-                        <li class="nav-item"><a class="nav-link mx-lg-2" href="../admin/dashboard.jsp">Dashboard</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link mx-lg-2" href="../admin/dashboard.jsp">Dashboard</a></li> -->
+                        <li class="nav-item"><a class="nav-link mx-lg-2" href="../admin/manageServiceCategory.jsp">Service Category</a></li>
                         <li class="nav-item"><a class="nav-link mx-lg-2" href="../admin/manageServices.jsp">Service</a></li>
                         <li class="nav-item"><a class="nav-link mx-lg-2" href="../admin/manageUser.jsp">User</a></li>
                         <li class="nav-item"><a class="nav-link mx-lg-2" href="../admin/manageFeedback.jsp">Feedback</a></li>
