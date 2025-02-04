@@ -17,48 +17,96 @@ import java.util.Map;
 /**
  * Servlet implementation class RemoveFromCartServlet
  */
+//@WebServlet("/RemoveFromCartServlet")
+//public class RemoveFromCartServlet extends HttpServlet {
+//    @SuppressWarnings("unchecked")
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        HttpSession session = request.getSession();
+//
+//        // Retrieve the cart from session
+//        List<Map<String, Object>> cart = (List<Map<String, Object>>) session.getAttribute("cart");
+//
+//        if (cart != null) {
+//            String serviceNameToRemove = request.getParameter("serviceName");
+//            int userId = (int) session.getAttribute("userId"); // Assuming the User ID is stored in the session
+//
+//            // Remove the booking from the database
+//            try {
+//                // Database connection
+//            	String USERNAME = "neondb_owner";
+//				 String PASSWORD = "PCbckaliN31T";
+//				Class.forName("org.postgresql.Driver");
+//	            String connURL = "jdbc:postgresql://ep-muddy-shape-a1pi44zq.ap-southeast-1.aws.neon.tech/cleaning-service?sslmode=require";
+//	            Connection conn = DriverManager.getConnection(connURL, USERNAME, PASSWORD);
+//                // Delete the booking from the database
+//                String sql = "DELETE FROM booking WHERE user_id = ? AND service_id = (SELECT service_id FROM services WHERE name = ?)";
+//                PreparedStatement stmt = conn.prepareStatement(sql);
+//                stmt.setInt(1, userId);
+//                stmt.setString(2, serviceNameToRemove);
+//
+//                stmt.executeUpdate();
+//                stmt.close();
+//                conn.close();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                response.sendRedirect("user/cart.jsp?error=database_error");
+//                return;
+//            }
+//
+//            // Remove the booking from the session cart
+//            cart.removeIf(booking -> serviceNameToRemove.equals(booking.get("serviceName")));
+//            session.setAttribute("cart", cart);
+//        }
+//
+//        // Redirect back to the cart page
+//        response.sendRedirect("user/cart.jsp");
+//    }
+//}
+//
 @WebServlet("/RemoveFromCartServlet")
 public class RemoveFromCartServlet extends HttpServlet {
-    @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
 
-        // Retrieve the cart from session
-        List<Map<String, Object>> cart = (List<Map<String, Object>>) session.getAttribute("cart");
-
-        if (cart != null) {
-            String serviceNameToRemove = request.getParameter("serviceName");
-            int userId = (int) session.getAttribute("userId"); // Assuming the User ID is stored in the session
-
-            // Remove the booking from the database
-            try {
-                // Database connection
-            	String USERNAME = "neondb_owner";
-				 String PASSWORD = "PCbckaliN31T";
-				Class.forName("org.postgresql.Driver");
-	            String connURL = "jdbc:postgresql://ep-muddy-shape-a1pi44zq.ap-southeast-1.aws.neon.tech/cleaning-service?sslmode=require";
-	            Connection conn = DriverManager.getConnection(connURL, USERNAME, PASSWORD);
-                // Delete the booking from the database
-                String sql = "DELETE FROM bookings WHERE user_id = ? AND service_id = (SELECT service_id FROM services WHERE name = ?)";
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                stmt.setInt(1, userId);
-                stmt.setString(2, serviceNameToRemove);
-
-                stmt.executeUpdate();
-                stmt.close();
-                conn.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                response.sendRedirect("user/cart.jsp?error=database_error");
-                return;
-            }
-
-            // Remove the booking from the session cart
-            cart.removeIf(booking -> serviceNameToRemove.equals(booking.get("serviceName")));
-            session.setAttribute("cart", cart);
+        if (session == null || session.getAttribute("userId") == null) {
+            response.sendRedirect("login.jsp?error=Please log in to remove items from your cart");
+            return;
         }
 
-        // Redirect back to the cart page
+        int userId = (int) session.getAttribute("userId");
+        String serviceNameToRemove = request.getParameter("serviceName");
+
+        try {
+            String USERNAME = "neondb_owner";
+            String PASSWORD = "PCbckaliN31T";
+            String connURL = "jdbc:postgresql://ep-muddy-shape-a1pi44zq.ap-southeast-1.aws.neon.tech/cleaning-service?sslmode=require";
+            Class.forName("org.postgresql.Driver");
+            Connection conn = DriverManager.getConnection(connURL, USERNAME, PASSWORD);
+
+            // Delete the booking from the database
+            String sql = "DELETE FROM booking WHERE user_id = ? AND service_id = (SELECT service_id FROM services WHERE name = ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            stmt.setString(2, serviceNameToRemove);
+
+            int rowsAffected = stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+
+            if (rowsAffected > 0) {
+                // Update the cart in session
+                List<Map<String, Object>> cart = (List<Map<String, Object>>) session.getAttribute("cart");
+                if (cart != null) {
+                    cart.removeIf(booking -> serviceNameToRemove.equals(booking.get("serviceName")));
+                    session.setAttribute("cart", cart);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("user/cart.jsp?error=database_error");
+            return;
+        }
+
         response.sendRedirect("user/cart.jsp");
     }
 }
