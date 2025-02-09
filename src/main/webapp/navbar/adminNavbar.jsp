@@ -37,6 +37,8 @@
                         <li class="nav-item"><a class="nav-link mx-lg-2" href="../admin/manageServiceCategory.jsp">Service Category</a></li>
                         <li class="nav-item"><a class="nav-link mx-lg-2" href="../admin/manageServices.jsp">Service</a></li>
                         <li class="nav-item"><a class="nav-link mx-lg-2" href="../admin/manageUser.jsp">User</a></li>
+                        <li class="nav-item"><a class="nav-link mx-lg-2" href="../admin/adminBookings.jsp">Bookings</a></li>
+                        <li class="nav-item"><a class="nav-link mx-lg-2" href="../admin/adminBookingSummary.jsp">Sales</a></li>
                         <li class="nav-item"><a class="nav-link mx-lg-2" href="../admin/manageFeedback.jsp">Feedback</a></li>
                     </ul>
 
