@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="dao.DBConnection"%>
@@ -139,9 +139,7 @@ header {
 		String error = request.getParameter("error");
 		if (error != null) {
 			String errorMessage = "";
-			if ("already_booked".equals(error)) {
-				errorMessage = "This service is already in your cart. You cannot book it again.";
-			} else if ("booking_failed".equals(error)) {
+			if ("booking_failed".equals(error)) {
 				errorMessage = "Failed to book the service. Please try again.";
 			} else if ("internal_error".equals(error)) {
 				errorMessage = "An internal error occurred. Please try again later.";
@@ -174,10 +172,10 @@ header {
 						name="booking_date" required>
 				</div>
 				<div class="mb-3">
-					<label for="bookingTime" class="form-label">Booking Time</label> <input
-						type="time" class="form-control" id="bookingTime"
-						name="booking_time" required>
-				</div>
+    <label for="bookingTime" class="form-label">Booking Time</label>
+    <input type="time" class="form-control" id="bookingTime" name="booking_time" required 
+           step="3600" /> <!-- step="3600" ensures that only whole hours are selectable -->
+</div>
 				<div class="mb-3">
 					<label for="instructions" class="form-label">Special
 						Instructions</label>

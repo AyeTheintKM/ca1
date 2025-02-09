@@ -260,7 +260,7 @@ body {
 				<div class="action-buttons">
 					<button type="submit" class="btn btn-primary">Update
 						Profile</button>
-					<a href="../DeleteProfileServlet.jsp" class="btn btn-danger">Delete
+					<a href="../DeleteProfileServlet" class="btn btn-danger">Delete
 						Account</a>
 				</div>
 			</form>

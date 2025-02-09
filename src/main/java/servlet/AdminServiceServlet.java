@@ -1,3 +1,4 @@
+/*
 package servlet;
 
 import java.io.IOException;
@@ -48,3 +49,4 @@ public class AdminServiceServlet extends HttpServlet {
         response.sendRedirect("dashboard.jsp");
     }
 }
+*/
